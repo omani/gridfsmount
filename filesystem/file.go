@@ -35,11 +35,13 @@ func NewFile(ds *datastore.GridFSDataStore, name string) (*File, error) {
 }
 
 func (f *File) Getxattr(ctx context.Context, req *fuse.GetxattrRequest, resp *fuse.GetxattrResponse) error {
+	logrus.Debug("Getxattr file: " + f.name)
 	return nil
 }
 
 func (f *File) Attr(ctx context.Context, a *fuse.Attr) error {
 
+	logrus.Debug("FILE ATTR IST:" + f.name)
 	file, err := f.ds.FindByName(f.name)
 
 	if err != nil {
@@ -55,6 +57,7 @@ func (f *File) Attr(ctx context.Context, a *fuse.Attr) error {
 }
 
 func (f *File) ReadAll(ctx context.Context) ([]byte, error) {
+	logrus.Info("bin nun im ReadAll vom File struct")
 	file, err := f.ds.FindByName(f.name)
 
 	if err != nil {

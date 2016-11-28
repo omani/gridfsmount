@@ -1,6 +1,6 @@
 package datastore
 
-import "gopkg.in/mgo.v2"
+import mgo "gopkg.in/mgo.v2"
 
 type GridFSDataStore struct {
 	session *mgo.Session
